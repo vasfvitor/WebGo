@@ -18,6 +18,11 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<h1>Contact Page</h1><p>To get in touch, email me at <a href=\"mailto:me@virtuaires.com.br\"></a></p>")
 }
 
+func getArticle(w http.ResponseWriter, r *http.Request) {
+	name := chi.URLParam(r, "name")
+	w.Write([]byte(fmt.Sprintf("Hello %s", name)))
+}
+
 // func pathHandler(w http.ResponseWriter, r *http.Request) {
 // 	switch r.URL.Path {
 // 	case "/":
@@ -47,6 +52,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Get("/", homeHandler)
 	r.Get("/contact", contactHandler)
+	r.Get("/articles/{name}", getArticle)
 	r.NotFound(
 		func(w http.ResponseWriter, r *http.Request) { http.Error(w, "Page not found", http.StatusNotFound) })
 	fmt.Println("Starting the server on :3000...")
