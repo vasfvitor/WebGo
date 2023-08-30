@@ -1,4 +1,4 @@
-module github.com/vasfvitor/lenslocked
+module github.com/vasfvitor/WebGo
 
 go 1.21.0
 
