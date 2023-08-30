@@ -19,7 +19,7 @@ func executeTemplate(w http.ResponseWriter, filepath string) {
 		http.Error(w, "Error parsing the template.", http.StatusInternalServerError)
 		return
 	}
-	err = tpl.Execute(w, "a")
+	err = tpl.Execute(w, nil)
 	if err != nil {
 		log.Printf("parexecutingsing template: %v", err)
 		http.Error(w, "Error executing the template.", http.StatusInternalServerError)
