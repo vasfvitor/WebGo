@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/vasfvitor/WebGo/controllers"
+	"github.com/vasfvitor/WebGo/templates"
 	"github.com/vasfvitor/WebGo/views"
 	//"github.com/go-chi/chi/v5/middleware"
 )
@@ -19,10 +19,10 @@ func getHello(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := chi.NewRouter()
 
-	tpl := views.Must(views.Parse(filepath.Join("templates", "home.gohtml")))
+	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml"))
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.Parse(filepath.Join("templates", "contact.gohtml")))
+	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
 	// dynamic
