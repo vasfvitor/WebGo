@@ -19,13 +19,13 @@ func getHello(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := chi.NewRouter()
 
-	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml"))
+	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml", "watercss.gohtml"))
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
+	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml", "watercss.gohtml"))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.ParseFS(templates.FS, "FAQ.gohtml"))
+	tpl = views.Must(views.ParseFS(templates.FS, "FAQ.gohtml", "watercss.gohtml"))
 	r.Get("/faq", controllers.FAQ(tpl))
 
 	// dynamic
