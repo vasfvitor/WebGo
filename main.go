@@ -25,6 +25,9 @@ func main() {
 	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
+	tpl = views.Must(views.ParseFS(templates.FS, "FAQ.gohtml"))
+	r.Get("/faq", controllers.FAQ(tpl))
+
 	// dynamic
 	r.Get("/hello/{name}", getHello)
 
