@@ -28,6 +28,10 @@ func main() {
 	tpl = views.Must(views.ParseFS(templates.FS, "FAQ.gohtml", "watercss.gohtml"))
 	r.Get("/faq", controllers.FAQ(tpl))
 
+	usersC := controllers.Users{}
+	usersC.Templates.New = views.Must(views.ParseFS(templates.FS, "signup.gohtml", "watercss.gohtml"))
+	r.Get("/signup", usersC.New)
+
 	// dynamic
 	r.Get("/hello/{name}", getHello)
 
